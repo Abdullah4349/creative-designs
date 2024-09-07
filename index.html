@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Designs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="logo/Creative Designs.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo/Creative Designs.png" alt="Creative Designs Logo" class="logo">
+            <h1>Muhammad Abdullah</h1>
+            <p>Graphic Designer in Photoshop and Corel Draw</p>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.tiktok.com/@yourusername" target="_blank">TikTok</a></li>
+            <li><a href="https://www.instagram.com/yourusername" target="_blank">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+        </ul>
+    </nav>
+    <form class="search-bar" action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search for work..." required>
+        <button type="submit">Search</button>
+    </form>
+    <section id="portfolio">
+        <h2>My Work</h2>
+        <div class="portfolio-items">
+            <div class="portfolio-item">
+                <img src="path/to/your/image1.jpg" alt="Project 1">
+                <h3>Project Title 1</h3>
+                <a href="path/to/your/file1.zip" download>Download</a>
+            </div>
+            <div class="portfolio-item">
+                <img src="path/to/your/image2.jpg" alt="Project 2">
+                <h3>Project Title 2</h3>
+                <a href="path/to/your/file2.zip" download>Download</a>
+            </div>
+            <!-- Add more items as needed -->
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <h3>Photoshop</h3>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <h3>Corel Draw</h3>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 85%;"></div>
+                </div>
+            </div>
+            <!-- Add more skills as needed -->
+        </div>
+    </section>
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"Muhammad's designs are top-notch! Highly recommend his services."</p>
+                <h4>- Client Name</h4>
+            </div>
+            <div class="testimonial">
+                <p>"Creative and professional. Always delivers on time."</p>
+                <h4>- Client Name</h4>
+            </div>
+            <!-- Add more testimonials as needed -->
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/mblrbqdk" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        <p>© 2024 Creative Designs. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
