@@ -3,12 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Designs</title>
+    <title>Creative Designs - Muhammad Abdullah</title>
+    <meta name="description" content="Muhammad Abdullah - Graphic Designer specializing in Photoshop and Corel Draw. Explore my portfolio and get in touch for collaborations.">
+    <meta name="keywords" content="Graphic Design, Photoshop, Corel Draw, Portfolio, Muhammad Abdullah">
+    <meta property="og:title" content="Creative Designs - Muhammad Abdullah">
+    <meta property="og:description" content="Muhammad Abdullah is a graphic designer with expertise in Photoshop and Corel Draw. Check out my portfolio for my latest work.">
+    <meta property="og:image" content="path/to/your/og-image.jpg">
+    <meta property="og:url" content="http://yourwebsite.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Creative Designs - Muhammad Abdullah">
+    <meta name="twitter:description" content="Muhammad Abdullah is a graphic designer specializing in Photoshop and Corel Draw. Discover my portfolio and get in touch!">
+    <meta name="twitter:image" content="path/to/your/twitter-image.jpg">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="logo/Creative Designs.png" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "your-project-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+    </script>
 </head>
 <body>
     <header>
@@ -46,8 +72,15 @@
                 <h3>Project Title 2</h3>
                 <a href="path/to/your/file2.zip" download>Download</a>
             </div>
-            <!-- Add more items as needed -->
         </div>
+    </section>
+    <section id="upload" style="display: none;">
+        <h2>Upload New Project Image</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <button type="submit">Upload Image</button>
+        </form>
+        <div id="uploadStatus"></div>
     </section>
     <section id="skills">
         <h2>Skills</h2>
@@ -64,26 +97,21 @@
                     <div class="skill-level" style="width: 85%;"></div>
                 </div>
             </div>
-            <!-- Add more skills as needed -->
         </div>
     </section>
     <section id="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonials-container">
+        <h2>What People Are Saying</h2>
+        <div class="testimonials">
             <div class="testimonial">
-                <p>"Muhammad's designs are top-notch! Highly recommend his services."</p>
-                <h4>- Client Name</h4>
+                <p>"Muhammad's work is incredible! Highly recommended for any graphic design needs."</p>
+                <p>- Client Name</p>
             </div>
-            <div class="testimonial">
-                <p>"Creative and professional. Always delivers on time."</p>
-                <h4>- Client Name</h4>
-            </div>
-            <!-- Add more testimonials as needed -->
         </div>
     </section>
     <section id="contact">
         <h2>Contact Me</h2>
-        <form action="https://formspree.io/f/mblrbqdk" method="POST">
+        <p>If you'd like to work together or have any questions, please feel free to contact me.</p>
+        <form action="/contact" method="post">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" placeholder="Your Message" required></textarea>
@@ -91,8 +119,7 @@
         </form>
     </section>
     <footer>
-        <p>© 2024 Creative Designs. All rights reserved.</p>
+        <p>&copy; 2024 Muhammad Abdullah. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
