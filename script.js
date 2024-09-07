@@ -1,42 +1,58 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Page loaded');
-    gsap.from('header h1', { duration: 1.5, y: -50, opacity: 0, onComplete: () => {
-        gsap.set('header h1', { clearProps: 'all' });
-    }});
-    gsap.from('header p', { duration: 1.5, y: 50, opacity: 0, delay: 0.5, onComplete: () => {
-        gsap.set('header p', { clearProps: 'all' });
-    }});
-    gsap.from('nav ul li', { duration: 1, y: 20, opacity: 0, stagger: 0.2, delay: 1, onComplete: () => {
-        gsap.set('nav ul li', { clearProps: 'all' });
-    }});
-    gsap.from('.portfolio-item', { duration: 1, y: 20, opacity: 0, stagger: 0.2, delay: 1.5, onComplete: () => {
-        gsap.set('.portfolio-item', { clearProps: 'all' });
-    }});
+    // GSAP Animation
+    gsap.from('header', {
+        opacity: 0,
+        y: -50,
+        duration: 1
+    });
 
-    // ScrollMagic for scroll animations
+    gsap.from('nav ul li', {
+        opacity: 0,
+        x: -30,
+        duration: 0.5,
+        stagger: 0.2
+    });
+
+    gsap.from('section', {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3
+    });
+
+    // ScrollMagic
     const controller = new ScrollMagic.Controller();
 
-    document.querySelectorAll('.portfolio-item, .skill, .testimonial').forEach((item) => {
-        new ScrollMagic.Scene({
-            triggerElement: item,
-            triggerHook: 0.9,
-            reverse: false
-        })
-        .setTween(gsap.from(item, { y: 50, opacity: 0, duration: 1, onComplete: () => {
-            gsap.set(item, { clearProps: 'all' });
-        }}))
-        .addTo(controller);
+    const portfolioAnimation = gsap.from('#portfolio h2', {
+        opacity: 0,
+        y: 50,
+        duration: 1
     });
 
-    // Log opacity changes
-    const container = document.querySelector('.container');
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.attributeName === 'style') {
-                console.log('Container style changed:', container.style.opacity);
+    new ScrollMagic.Scene({
+        triggerElement: '#portfolio',
+        triggerHook: 0.8
+    })
+    .setTween(portfolioAnimation)
+    .addTo(controller);
+
+    // Upload Form Handling
+    const uploadForm = document.getElementById('uploadForm');
+    const uploadStatus = document.getElementById('uploadStatus');
+
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const file = document.getElementById('fileInput').files[0];
+
+        if (file) {
+            const storageRef = storage.ref(`images/${file.name}`);
+            try {
+                await storageRef.put(file);
+                uploadStatus.textContent = 'File uploaded successfully!';
+            } catch (error) {
+                console.error('Error uploading file:', error);
+                uploadStatus.textContent = 'Error uploading file. Please try again.';
             }
-        });
+        }
     });
-    observer.observe(container, { attributes: true });
 });
