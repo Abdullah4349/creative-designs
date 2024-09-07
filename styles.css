@@ -54,7 +54,7 @@ nav ul li a:hover {
     color: #ff0;
 }
 
-.portfolio-items, .skills-container{
+.portfolio-items, .skills-container, .testimonials-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
