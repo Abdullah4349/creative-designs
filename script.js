@@ -40,3 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     observer.observe(container, { attributes: true });
 });
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a file to upload.');
+        return;
+    }
+
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`portfolio/${file.name}`);
+    const uploadTask = fileRef.put(file);
+
+    uploadTask.on('state_changed', 
+        (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            document.getElementById('uploadStatus').textContent = `Upload is ${progress}% done`;
+        }, 
+        (error) => {
+            alert('Failed to upload image: ' + error.message);
+        }, 
+        () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                document.getElementById('uploadStatus').textContent = 'Upload successful!';
+                displayImage(downloadURL);
+            });
+        }
+    );
+});
+
+function displayImage(url) {
+    const portfolioItems = document.querySelector('.portfolio-items');
+    const newPortfolioItem = document.createElement('div');
+    newPortfolioItem.classList.add('portfolio-item');
+    newPortfolioItem.innerHTML = `
+        <img src="${url}" alt="New Project">
+        <h3>New Project</h3>
+    `;
+    portfolioItems.appendChild(newPortfolioItem);
+}
