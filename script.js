@@ -43,89 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ScrollMagic for Scroll Animations
-    const controller = new ScrollMagic.Controller();
+    // Firebase Image Upload
+    const uploadForm = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('fileInput');
+    const uploadStatus = document.getElementById('uploadStatus');
 
-    document.querySelectorAll('.portfolio-item, .skill, .testimonial').forEach((item) => {
-        new ScrollMagic.Scene({
-            triggerElement: item,
-            triggerHook: 0.9,
-            reverse: false
-        })
-        .setTween(gsap.from(item, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            onComplete: () => {
-                gsap.set(item, { clearProps: 'all' });
-            }
-        }))
-        .addTo(controller);
-    });
+    uploadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    // Log Opacity Changes
-    const container = document.querySelector('.container');
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.attributeName === 'style') {
-                console.log('Container style changed:', container.style.opacity);
-            }
-        });
-    });
-    observer.observe(container, { attributes: true });
-
-    // Firebase Authentication
-    const auth = firebase.auth();
-    const adminUID = 'YOUR_ADMIN_UID';  // Replace with your actual admin UID
-
-    // Check if the user is logged in and is the admin
-    auth.onAuthStateChanged(user => {
-        if (user && user.uid === adminUID) {
-            document.getElementById('upload').style.display = 'block';
-        }
-    });
-
-    // Upload Form Submission Logic
-    document.getElementById('uploadForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
+        if (file) {
+            const storageRef = firebase.storage().ref('images/' + file.name);
+            const uploadTask = storageRef.put(file);
 
-        if (!file) {
-            alert('Please select a file to upload.');
-            return;
+            uploadTask.on('state_changed',
+                function(snapshot) {
+                    let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploadStatus.innerHTML = 'Upload is ' + progress + '% done';
+                },
+                function(error) {
+                    console.error('Upload failed:', error);
+                    uploadStatus.innerHTML = 'Upload failed: ' + error.message;
+                },
+                function() {
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                        uploadStatus.innerHTML = 'File available at <a href="' + downloadURL + '">' + downloadURL + '</a>';
+                    });
+                }
+            );
+        } else {
+            uploadStatus.innerHTML = 'No file selected';
         }
-
-        const storageRef = firebase.storage().ref();
-        const fileRef = storageRef.child(`portfolio/${file.name}`);
-        const uploadTask = fileRef.put(file);
-
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                document.getElementById('uploadStatus').textContent = `Upload is ${progress}% done`;
-            },
-            (error) => {
-                alert('Failed to upload image: ' + error.message);
-            },
-            () => {
-                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                    document.getElementById('uploadStatus').textContent = 'Upload successful!';
-                    displayImage(downloadURL);
-                });
-            }
-        );
     });
-
-    function displayImage(url) {
-        const portfolioItems = document.querySelector('.portfolio-items');
-        const newPortfolioItem = document.createElement('div');
-        newPortfolioItem.classList.add('portfolio-item');
-        newPortfolioItem.innerHTML = `
-            <img src="${url}" alt="New Project">
-            <h3>New Project</h3>
-        `;
-        portfolioItems.appendChild(newPortfolioItem);
-    }
 });
