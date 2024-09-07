@@ -3,42 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Designs</title>
+    <title>Creative Designs | Graphic Designer Portfolio - Photoshop & Corel Draw</title>
+
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Explore Muhammad Abdullah's graphic design portfolio, specializing in Photoshop and Corel Draw. Discover creative designs and projects.">
+    <meta name="keywords" content="graphic design, Photoshop, Corel Draw, creative portfolio, Muhammad Abdullah, design services, branding">
+    <meta name="author" content="Muhammad Abdullah">
+    <meta property="og:title" content="Creative Designs - Graphic Design Portfolio">
+    <meta property="og:description" content="Explore the creative design portfolio of Muhammad Abdullah, specializing in graphic design using Photoshop and Corel Draw.">
+    <meta property="og:image" content="https://yourdomain.com/logo/Creative%20Designs.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://yourdomain.com">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="logo/Creative Designs.png" type="image/x-icon">
+
+    <!-- GSAP & ScrollMagic -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
 
     <!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-<!-- Firebase Storage SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
 
-<script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyDaaUrbFAZqe3UdSdlUGPugGz-6lBBT4p8",
-        authDomain: "creative-designsio.firebaseapp.com",
-        projectId: "creative-designsio",
-        storageBucket: "creative-designsio.appspot.com",
-        messagingSenderId: "707920085527",
-        appId: "1:707920085527:web:3b5a4e43ac2b3fdbcc5252"
-    };
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const storage = firebase.storage();
-</script>
-
+    <!-- Firebase Config -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+    </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <img src="logo/Creative Designs.png" alt="Creative Designs Logo" class="logo">
-            <h1>Muhammad Abdullah</h1>
-            <p>Graphic Designer in Photoshop and Corel Draw</p>
+            <img src="logo/Creative Designs.png" alt="Creative Designs Logo - Muhammad Abdullah" class="logo">
+            <h1>Creative Designs by Muhammad Abdullah</h1>
+            <p>Expert Graphic Designer in Photoshop and Corel Draw</p>
         </div>
     </header>
+
     <nav>
         <ul>
             <li><a href="#portfolio">Portfolio</a></li>
@@ -50,35 +62,27 @@
             <li><a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
         </ul>
     </nav>
+
     <form class="search-bar" action="/search" method="GET">
         <input type="text" name="query" placeholder="Search for work..." required>
         <button type="submit">Search</button>
     </form>
+
     <section id="portfolio">
         <h2>My Work</h2>
         <div class="portfolio-items">
-            <div class="portfolio-item">
-                <img src="path/to/your/image1.jpg" alt="Project 1">
-                <h3>Project Title 1</h3>
-                <a href="path/to/your/file1.zip" download>Download</a>
-            </div>
-            <div class="portfolio-item">
-                <img src="path/to/your/image2.jpg" alt="Project 2">
-                <h3>Project Title 2</h3>
-                <a href="path/to/your/file2.zip" download>Download</a>
-            </div>
-            <!-- Add more items as needed -->
+            <!-- Portfolio items go here -->
         </div>
     </section>
-    <section id="upload" style="display: none;">
-    <h2>Upload New Project Image</h2>
-    <form id="uploadForm">
-        <input type="file" id="fileInput" required>
-        <button type="submit">Upload Image</button>
-    </form>
-    <div id="uploadStatus"></div>
-</section>
 
+    <section id="upload" style="display: none;">
+        <h2>Upload New Project Image</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <button type="submit">Upload Image</button>
+        </form>
+        <div id="uploadStatus"></div>
+    </section>
 
     <section id="skills">
         <h2>Skills</h2>
@@ -95,23 +99,16 @@
                     <div class="skill-level" style="width: 85%;"></div>
                 </div>
             </div>
-            <!-- Add more skills as needed -->
         </div>
     </section>
+
     <section id="testimonials">
         <h2>Testimonials</h2>
         <div class="testimonials-container">
-            <div class="testimonial">
-                <p>"Muhammad's designs are top-notch! Highly recommend his services."</p>
-                <h4>- Client Name</h4>
-            </div>
-            <div class="testimonial">
-                <p>"Creative and professional. Always delivers on time."</p>
-                <h4>- Client Name</h4>
-            </div>
-            <!-- Add more testimonials as needed -->
+            <!-- Testimonials go here -->
         </div>
     </section>
+
     <section id="contact">
         <h2>Contact Me</h2>
         <form action="https://formspree.io/f/mblrbqdk" method="POST">
@@ -121,9 +118,11 @@
             <button type="submit">Send Message</button>
         </form>
     </section>
+
     <footer>
         <p>© 2024 Creative Designs. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
